@@ -1,6 +1,5 @@
 import Data.Char
 import System.IO
-import System.Environment
 
 colorCode :: String -> String
 colorCode "" = ""
@@ -29,4 +28,4 @@ textToColor :: String -> String
 textToColor = concat . map (colorCode . charToBg)
 
 main :: IO ()
-main = getArgs >>= mapM_ (putStrLn . textToColor)
+main = getContents >>= putStrLn . textToColor
