@@ -1,5 +1,6 @@
 import Data.Char
 import System.IO
+import System.Environment
 
 colorCode :: String -> String
 colorCode "" = ""
@@ -25,7 +26,7 @@ charToBg 's' = "15,15 "
 charToBg c   = [c]
 
 textToColor :: String -> String
-textToColor = unlines . map (colorCode . charToBg)
+textToColor = concat . map (colorCode . charToBg)
 
 main :: IO ()
-main =  interact textToColor
+main = getArgs >>= mapM_ (putStrLn . textToColor)
